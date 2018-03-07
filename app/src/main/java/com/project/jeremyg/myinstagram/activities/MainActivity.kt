@@ -1,7 +1,8 @@
-package com.project.jeremyg.myinstagram
+package com.project.jeremyg.myinstagram.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.project.jeremyg.myinstagram.R
 
 class MainActivity : AppCompatActivity() {
 
