@@ -1,20 +1,20 @@
-package com.project.jeremyg.myinstagram.activities
+package com.project.jeremyg.myinstagram.views.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.project.jeremyg.myinstagram.R
-import com.project.jeremyg.myinstagram.fragments.GridFragment
+import com.project.jeremyg.myinstagram.views.fragments.GridFragment
 
 
 
-class MainActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity() {
 
     var currentPosition: Int = 0
     private val KEY_CURRENT_POSITION = "com.project.jeremyg.myinstagram.key.currentPosition"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_user)
         if(savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0)
             // Return here to prevent adding additional GridFragments when changing orientation

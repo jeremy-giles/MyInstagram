@@ -10,11 +10,7 @@
     android:background="@color/cardview_light_background"
     android:clickable="true"
     android:clipChildren="false"
-    android:foreground="?android:selectableItemBackground"
-    card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp"
-    card_view:cardPreventCornerOverlap="true"
-    card_view:cardUseCompatPadding="true">
+    android:foreground="?android:selectableItemBackground">
 
     <ImageView
         android:id="@+id/card_image"

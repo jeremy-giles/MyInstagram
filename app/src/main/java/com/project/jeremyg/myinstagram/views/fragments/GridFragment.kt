@@ -1,4 +1,4 @@
-package com.project.jeremyg.myinstagram.fragments
+package com.project.jeremyg.myinstagram.views.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

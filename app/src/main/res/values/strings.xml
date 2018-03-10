@@ -3,4 +3,6 @@
 
     <!-- IMAGE -->
     <string name="image_description">Image</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>
