@@ -1,7 +1,12 @@
 package com.project.jeremyg.myinstagram.models
 
-/**
- * Created by jeremy on 11/03/2018.
- */
-class Media {
+enum class Resolution {
+    LOW_RESOLUTION, THUMBNAIL, STANDARD
 }
+
+data class Media(
+        var resolution: Resolution,
+        var url: String,
+        var width: Int,
+        var height: Int
+)
