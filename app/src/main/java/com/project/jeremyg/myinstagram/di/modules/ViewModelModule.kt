@@ -6,6 +6,7 @@ import com.project.jeremyg.myinstagram.view_models.UserProfileViewModel
 import android.arch.lifecycle.ViewModel
 import com.project.jeremyg.myinstagram.di.keys.ViewModelKey
 import com.project.jeremyg.myinstagram.view_models.FactoryViewModel
+import com.project.jeremyg.myinstagram.view_models.InstagramAuthViewModel
 import dagger.Module
 import dagger.multibindings.IntoMap
 
@@ -14,9 +15,9 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(UserProfileViewModel::class)
-    internal abstract fun bindUserProfileViewModel(repoViewModel: UserProfileViewModel): ViewModel
+    @ViewModelKey(InstagramAuthViewModel::class)
+    abstract fun bindInstagramAuthViewModel(instagramAuthViewModel: InstagramAuthViewModel): ViewModel
 
     @Binds
-    internal abstract fun bindViewModelFactory(factory: FactoryViewModel): ViewModelProvider.Factory
+    abstract fun bindFactoryViewModel(factory: FactoryViewModel): ViewModelProvider.Factory
 }

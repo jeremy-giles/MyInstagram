@@ -1,9 +1,12 @@
 package com.project.jeremyg.myinstagram.instagram
 
 object InstagramData {
-    val AUTH_URL = "https://api.instagram.com/oauth/authorize/"
-    val TOKEN_URL = "https://api.instagram.com/oauth/access_token"
-    val API_URL = "https://api.instagram.com/v1"
+
+    val BASE_URL : String = "https://api.instagram.com/"
+
+    val AUTH_URL = BASE_URL + "oauth/authorize/"
+    val TOKEN_URL = BASE_URL + "oauth/access_token"
+    val API_URL = BASE_URL + "v1"
     var CALLBACK_URL = "https://instagram.com"
 
     val CLIENT_ID = "X"

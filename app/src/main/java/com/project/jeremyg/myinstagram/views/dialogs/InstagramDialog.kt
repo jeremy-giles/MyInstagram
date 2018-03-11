@@ -15,9 +15,11 @@ import android.view.ViewGroup
 import android.view.Window
 import android.webkit.*
 import android.widget.FrameLayout
+import com.project.jeremyg.myinstagram.instagram.InstagramAuthListener
 import com.project.jeremyg.myinstagram.instagram.InstagramData
 
-class InstagramDialog(context: Context, private val mUrl: String) : Dialog(context) {
+class InstagramDialog(context: Context, private val mUrl: String,
+                      var authListener: InstagramAuthListener) : Dialog(context) {
 
     companion object {
 
@@ -102,20 +104,19 @@ class InstagramDialog(context: Context, private val mUrl: String) : Dialog(conte
 
             if (url.startsWith(InstagramData.CALLBACK_URL)) {
                 val urls = url.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                //mOAuthDialogListener.onComplete(urls[1])
+                authListener.onComplete(urls[1])
                 this@InstagramDialog.dismiss()
                 return true
             } else {
                 Log.d(TAG, "URL didn't started with the callback url")
             }
             return false
-
         }
 
         override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
             super.onReceivedError(view, request, error)
             Log.d(TAG, "Page error: " + error.toString())
-            //mOAuthDialogListener.onError(error.toString())
+            authListener.onError(error.toString())
             this@InstagramDialog.dismiss()
         }
 

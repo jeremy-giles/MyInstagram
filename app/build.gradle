@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -51,8 +51,8 @@ dependencies {
     // DAGGER 2
     implementation 'com.google.dagger:dagger-android:2.13'
     implementation 'com.google.dagger:dagger-android-support:2.13'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
+    kapt 'com.google.dagger:dagger-android-processor:2.13'
+    kapt 'com.google.dagger:dagger-compiler:2.13'
 
     // BUTTERKNIFE
     compile 'com.jakewharton:butterknife:8.8.1'

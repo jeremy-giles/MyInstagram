@@ -5,8 +5,6 @@ import android.os.Bundle
 import com.project.jeremyg.myinstagram.R
 import com.project.jeremyg.myinstagram.views.fragments.GridFragment
 
-
-
 class UserActivity : AppCompatActivity() {
 
     var currentPosition: Int = 0
