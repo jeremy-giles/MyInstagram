@@ -3,32 +3,32 @@ package com.project.jeremyg.myinstagram.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-enum class Type {
-    IMAGE, VIDEO
-}
-
 data class Post(
         @SerializedName("id")
         @Expose
-        var id: String,
+        var id: String = "",
 
         @SerializedName("type")
         @Expose
-        var type: Type,
+        var type: Type = Type.IMAGE,
 
         @SerializedName("comments")
         @Expose
-        var comments: Int,
+        var comments: Int = 0,
 
         @SerializedName("likes")
         @Expose
-        var likes: Int,
+        var likes: Int = 0,
 
         @SerializedName("images")
         @Expose
-        var media: List<Media>,
+        var images: MutableList<Media> = mutableListOf(),
 
         @SerializedName("videos")
         @Expose
-        var videos: List<Media>
-)
+        var videos: List<Media> = emptyList()
+) {
+        enum class Type {
+                IMAGE, VIDEO
+        }
+}
