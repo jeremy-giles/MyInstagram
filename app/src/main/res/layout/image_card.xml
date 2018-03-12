@@ -18,4 +18,5 @@
         android:layout_height="200dp"
         android:contentDescription="@string/image_description"
         android:scaleType="fitCenter"/>
+
 </android.support.v7.widget.CardView>

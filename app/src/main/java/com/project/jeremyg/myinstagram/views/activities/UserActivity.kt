@@ -2,13 +2,24 @@ package com.project.jeremyg.myinstagram.views.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import com.project.jeremyg.myinstagram.R
 import com.project.jeremyg.myinstagram.views.fragments.GridFragment
+import dagger.android.AndroidInjection
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
-class UserActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
-    var currentPosition: Int = 0
     private val KEY_CURRENT_POSITION = "com.project.jeremyg.myinstagram.key.currentPosition"
+
+    companion object {
+        internal var currentPosition: Int = 0
+    }
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +29,9 @@ class UserActivity : AppCompatActivity() {
             // Return here to prevent adding additional GridFragments when changing orientation
             return
         }
+
+        configureDagger()
+
         val fragmentManager = supportFragmentManager
         fragmentManager
                 .beginTransaction()
@@ -28,5 +42,13 @@ class UserActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_CURRENT_POSITION, currentPosition)
+    }
+
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
+        return dispatchingAndroidInjector
+    }
+
+    private fun configureDagger() {
+        AndroidInjection.inject(this)
     }
 }

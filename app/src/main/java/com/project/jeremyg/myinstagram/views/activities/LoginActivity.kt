@@ -14,7 +14,7 @@ import com.project.jeremyg.myinstagram.models.AccessToken
 import com.project.jeremyg.myinstagram.view_models.InstagramAuthViewModel
 import dagger.android.AndroidInjection
 import android.arch.lifecycle.ViewModelProvider
-import com.project.jeremyg.myinstagram.view_models.FactoryViewModel
+import android.content.Intent
 import javax.inject.Inject
 
 
@@ -28,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
     private var mDialog: InstagramDialog? = null
     private lateinit var authListener: InstagramAuthListener
+
+    val INTENT_ACCESS_TOKEN = "access_token"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -49,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
                 Log.e(TAG, "ACCESS_TOKEN: " + accessToken.accessToken)
                 Log.e(TAG, "ID: " + accessToken.user.id)
                 Log.e(TAG, "UserName: " + accessToken.user.userName)
+
+                startActivity(Intent(this, UserActivity::class.java))
             }
         })
     }
