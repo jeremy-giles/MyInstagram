@@ -71,7 +71,7 @@ class GridFragment : Fragment() {
     }
 
     private fun configureViewModel() {
-        postsListViewModel = ViewModelProviders.of(this, viewModelFactory).get(PostsListViewModel::class.java)
+        postsListViewModel = ViewModelProviders.of(this.activity!!, viewModelFactory).get(PostsListViewModel::class.java)
         postsListViewModel!!.postsResponse.observe(this, Observer<List<Post>> { posts ->
             if (posts != null) {
                 Log.e(TAG, "ACCESS_TOKEN: ")

@@ -2,6 +2,7 @@ package com.project.jeremyg.myinstagram.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Post(
         @SerializedName("id")
@@ -27,7 +28,7 @@ data class Post(
         @SerializedName("videos")
         @Expose
         var videos: List<Media> = emptyList()
-) {
+) : Serializable {
         enum class Type {
                 IMAGE, VIDEO
         }

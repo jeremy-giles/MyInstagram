@@ -12,6 +12,7 @@ import android.widget.ImageView
 import com.bumptech.glide.RequestManager
 import com.project.jeremyg.myinstagram.views.fragments.ImagePagerFragment
 import android.transition.TransitionSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.load.DataSource
@@ -21,6 +22,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 import com.bumptech.glide.Glide
 
 class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
+
+    private val TAG = GridAdapter::class.java.canonicalName
 
     /**
      * A listener that is attached to all ViewHolders to handle image loading events and clicks.
@@ -64,20 +67,25 @@ class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
      * Default [ViewHolderListener] implementation.
      */
     private class ViewHolderListenerImpl internal constructor(private val fragment: Fragment) : ViewHolderListener {
+
+        private val TAG = ViewHolderListenerImpl::class.java.canonicalName
+
         private val enterTransitionStarted: AtomicBoolean
 
         init {
             this.enterTransitionStarted = AtomicBoolean()
         }
 
-        override fun onLoadCompleted(view: ImageView, position: Int) {
+        override fun onLoadCompleted(view: ImageView, adapterPosition: Int) {
+            Log.e(TAG, "onLoadCompleted() START")
             // Call startPostponedEnterTransition only when the 'selected' image loading is completed.
-            if (UserActivity.currentPosition !== position) {
+            if (UserActivity.currentPosition != adapterPosition) {
                 return
             }
             if (enterTransitionStarted.getAndSet(true)) {
                 return
             }
+            Log.e(TAG, "onLoadCompleted() DONE")
             fragment.startPostponedEnterTransition()
         }
 
@@ -87,17 +95,18 @@ class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
          *
          * @param view the clicked [ImageView] (the shared element view will be re-mapped at the
          * GridFragment's SharedElementCallback)
-         * @param position the selected view position
+         * @param adapterPosition the selected view position
          */
-        override fun onItemClicked(view: View, position: Int) {
+        override fun onItemClicked(view: View, adapterPosition: Int) {
             // Update the position.
-            UserActivity.currentPosition = position
+            UserActivity.currentPosition = adapterPosition
 
             // Exclude the clicked card from the exit transition (e.g. the card will disappear immediately
             // instead of fading out with the rest to prevent an overlapping animation of fade and move).
             (fragment.getExitTransition() as TransitionSet).excludeTarget(view, true)
-
+            Log.e(TAG, "Position: " + UserActivity.currentPosition)
             val transitioningView = view.findViewById<ImageView>(R.id.card_image)
+
             fragment.getFragmentManager()?.beginTransaction()?.setReorderingAllowed(true) // Optimize for shared element transition
                     ?.addSharedElement(transitioningView, transitioningView.getTransitionName())
                     ?.replace(R.id.fragment_container, ImagePagerFragment(), ImagePagerFragment::class.java
