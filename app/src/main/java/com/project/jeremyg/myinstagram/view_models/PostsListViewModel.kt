@@ -7,9 +7,11 @@ import com.project.jeremyg.myinstagram.models.Post
 import com.project.jeremyg.myinstagram.repositories.UserRepository
 import javax.inject.Inject
 
-class PostsListViewModel @Inject constructor(private var userRepo: UserRepository) : ViewModel() {
+class PostsListViewModel() : ViewModel() {
 
     private val TAG = PostsListViewModel::class.java.canonicalName
+
+    lateinit var userRepo: UserRepository
 
     var isLoading = MutableLiveData<Boolean>()
 
@@ -17,8 +19,13 @@ class PostsListViewModel @Inject constructor(private var userRepo: UserRepositor
 
     var postsResponse = MutableLiveData<List<Post>>()
 
+    @Inject
+    constructor(userRepo: UserRepository) : this() {
+        this.userRepo = userRepo
+        init()
+    }
+
     fun init() {
-        Log.e(TAG, "init()")
         getPostsList()
     }
 

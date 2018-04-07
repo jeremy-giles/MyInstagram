@@ -22,7 +22,6 @@ class InstagramAuthViewModel @Inject constructor(private var userRepo: UserRepos
         if(!requestCode.isNotEmpty()) {
             return
         }
-        Log.e(TAG, "init()")
         getAccessToken(requestCode)
     }
 

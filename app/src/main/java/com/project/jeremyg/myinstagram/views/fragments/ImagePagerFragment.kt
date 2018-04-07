@@ -31,8 +31,6 @@ import javax.inject.Inject
  */
 class ImagePagerFragment : Fragment() {
 
-    private val TAG = ImagePagerFragment::class.java.canonicalName
-
     lateinit var viewPager: ViewPager
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -44,15 +42,13 @@ class ImagePagerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        Log.e(TAG, "onCreateView() START")
-        this.configureDagger()
-        this.configureViewModel()
+        configureDagger()
+        configureViewModel()
 
         viewPager = inflater.inflate(R.layout.fragment_image_pager, container, false) as ViewPager
         viewPager.adapter = ImagePagerAdapter(this, postsListViewModel)
 
         viewPager.setCurrentItem(UserActivity.currentPosition)
-        Log.e(TAG, "onCreateView() AFTER POSITION")
         viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 UserActivity.currentPosition = position
@@ -65,7 +61,6 @@ class ImagePagerFragment : Fragment() {
             postponeEnterTransition()
         }
 
-        Log.e(TAG, "onCreateView() DONE")
         return viewPager
     }
 

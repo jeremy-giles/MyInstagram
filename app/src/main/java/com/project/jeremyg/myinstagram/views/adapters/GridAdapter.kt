@@ -77,7 +77,7 @@ class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
         }
 
         override fun onLoadCompleted(view: ImageView, adapterPosition: Int) {
-            Log.e(TAG, "onLoadCompleted() START")
+            //Log.e(TAG, "onLoadCompleted() START")
             // Call startPostponedEnterTransition only when the 'selected' image loading is completed.
             if (UserActivity.currentPosition != adapterPosition) {
                 return
@@ -85,7 +85,7 @@ class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
             if (enterTransitionStarted.getAndSet(true)) {
                 return
             }
-            Log.e(TAG, "onLoadCompleted() DONE")
+            //Log.e(TAG, "onLoadCompleted() DONE")
             fragment.startPostponedEnterTransition()
         }
 
@@ -104,7 +104,7 @@ class GridAdapter() : RecyclerView.Adapter<GridAdapter.PostViewHolder>() {
             // Exclude the clicked card from the exit transition (e.g. the card will disappear immediately
             // instead of fading out with the rest to prevent an overlapping animation of fade and move).
             (fragment.getExitTransition() as TransitionSet).excludeTarget(view, true)
-            Log.e(TAG, "Position: " + UserActivity.currentPosition)
+            //Log.e(TAG, "Position: " + UserActivity.currentPosition)
             val transitioningView = view.findViewById<ImageView>(R.id.card_image)
 
             fragment.getFragmentManager()?.beginTransaction()?.setReorderingAllowed(true) // Optimize for shared element transition

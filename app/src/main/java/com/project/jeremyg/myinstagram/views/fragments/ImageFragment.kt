@@ -38,8 +38,6 @@ class ImageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        Log.e(TAG, "onCreateView()")
-
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_image, container, false)
 
@@ -72,23 +70,9 @@ class ImageFragment : Fragment() {
     }
 
     companion object {
-
-        private val TAG = ImageFragment::class.java.canonicalName
-
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
         private val ARG_PARAM1 = "param1"
 
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @return A new instance of fragment ImageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         fun newInstance(post: Post?): ImageFragment {
-            Log.e(TAG, "newInstance()")
             val fragment = ImageFragment()
             val args = Bundle()
             args.putSerializable(ARG_PARAM1, post)

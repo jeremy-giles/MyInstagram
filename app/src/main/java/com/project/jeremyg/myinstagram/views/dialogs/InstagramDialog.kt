@@ -10,7 +10,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.view.Window
 import android.webkit.*
@@ -22,7 +21,6 @@ class InstagramDialog(context: Context, private val mUrl: String,
                       var authListener: InstagramAuthListener) : Dialog(context) {
 
     companion object {
-
         internal val DIMENSIONS_LANDSCAPE = floatArrayOf(460f, 260f)
         internal val DIMENSIONS_PORTRAIT = floatArrayOf(280f, 420f)
         internal val FILL = FrameLayout.LayoutParams(
@@ -30,7 +28,6 @@ class InstagramDialog(context: Context, private val mUrl: String,
                 ViewGroup.LayoutParams.MATCH_PARENT)
         internal val MARGIN = 4
         internal val PADDING = 2
-        private val TAG = "INSTAGRAM DIALOG"
     }
 
     private var mSpinner: ProgressDialog? = null
@@ -62,7 +59,6 @@ class InstagramDialog(context: Context, private val mUrl: String,
 
         val cookieManager = CookieManager.getInstance()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Log.i(TAG, "REMOVING COOKIES")
             cookieManager.removeAllCookies(null)
             CookieManager.getInstance().flush()
         }
@@ -91,38 +87,25 @@ class InstagramDialog(context: Context, private val mUrl: String,
         mContent!!.addView(mWebView)
     }
 
-    interface OAuthDialogListener {
-        fun onComplete(accessToken: String)
-
-        fun onError(error: String)
-    }
-
     private inner class OAuthWebViewClient : WebViewClient() {
 
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-            Log.d(TAG, "Redirecting URL " + url)
-
             if (url.startsWith(InstagramData.CALLBACK_URL)) {
                 val urls = url.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 authListener.onComplete(urls[1])
                 this@InstagramDialog.dismiss()
                 return true
-            } else {
-                Log.d(TAG, "URL didn't started with the callback url")
             }
             return false
         }
 
         override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
             super.onReceivedError(view, request, error)
-            Log.d(TAG, "Page error: " + error.toString())
             authListener.onError(error.toString())
             this@InstagramDialog.dismiss()
         }
 
         override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
-            Log.d(TAG, "Loading URL: " + url)
-
             super.onPageStarted(view, url, favicon)
             mSpinner!!.show()
         }
@@ -133,7 +116,6 @@ class InstagramDialog(context: Context, private val mUrl: String,
             if (title != null && title.length > 0) {
                 mTitle!!.text = title
             }
-            Log.d(TAG, "onPageFinished URL: " + url)
             mSpinner!!.dismiss()
         }
     }

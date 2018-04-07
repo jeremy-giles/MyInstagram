@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MyInstagram</string>
 
+    <!-- NETWORK -->
+    <string name="connection_failed">MyInstagram connection failed</string>
+
     <!-- IMAGE -->
     <string name="image_description">Image</string>
     <string name="title_activity_main">MainActivity</string>

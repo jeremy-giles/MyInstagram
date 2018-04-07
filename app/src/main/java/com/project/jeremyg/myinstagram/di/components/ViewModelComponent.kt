@@ -9,7 +9,6 @@ import dagger.Component
         ViewModelModule::class
 ))
 interface ViewModelComponent {
-    // inject my view models
     fun inject(instagramAuthViewModel: InstagramAuthViewModel)
     fun inject(postsListViewModel: PostsListViewModel)
 }

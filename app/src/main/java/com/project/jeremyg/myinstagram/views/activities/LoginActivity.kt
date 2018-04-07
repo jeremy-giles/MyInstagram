@@ -9,14 +9,16 @@ import com.project.jeremyg.myinstagram.instagram.InstagramAuthListener
 import com.project.jeremyg.myinstagram.instagram.InstagramData.AUTHORIZATION_URL
 
 import com.project.jeremyg.myinstagram.views.dialogs.InstagramDialog
-import android.util.Log
 import com.project.jeremyg.myinstagram.models.AccessToken
 import com.project.jeremyg.myinstagram.view_models.InstagramAuthViewModel
 import dagger.android.AndroidInjection
 import android.arch.lifecycle.ViewModelProvider
 import android.content.Intent
+import android.widget.TextView
+import butterknife.BindView
+import butterknife.ButterKnife
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
-
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,13 +28,15 @@ class LoginActivity : AppCompatActivity() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     var authViewModel: InstagramAuthViewModel? = null
 
+    @BindView(R.id.tv_information) @JvmField
+    var tvInformation: TextView? = null
+
     private var mDialog: InstagramDialog? = null
     private lateinit var authListener: InstagramAuthListener
 
-    val INTENT_ACCESS_TOKEN = "access_token"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        ButterKnife.bind(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -40,18 +44,15 @@ class LoginActivity : AppCompatActivity() {
         configureViewModel()
         configureListener()
 
-        mDialog = InstagramDialog(this, AUTHORIZATION_URL, authListener)
-        mDialog?.show()
+        btn_login.setOnClickListener {
+            launchLogin()
+        }
     }
 
     private fun configureViewModel() {
         authViewModel = ViewModelProviders.of(this, viewModelFactory).get(InstagramAuthViewModel::class.java)
         authViewModel!!.accessToken.observe(this, Observer<AccessToken> { accessToken ->
             if (accessToken != null) {
-                Log.e(TAG, "ACCESS_TOKEN: " + accessToken.accessToken)
-                Log.e(TAG, "ID: " + accessToken.user.id)
-                Log.e(TAG, "UserName: " + accessToken.user.userName)
-
                 startActivity(Intent(this, UserActivity::class.java))
             }
         })
@@ -61,13 +62,19 @@ class LoginActivity : AppCompatActivity() {
         authListener = object : InstagramAuthListener {
 
             override fun onComplete(requestCode: String) {
-                Log.d(TAG, "onSuccess: " + requestCode)
                 authViewModel?.init(requestCode)
             }
 
             override fun onError(error: String) {
-                Log.d(TAG, "onFail: " + error)
+                tvInformation?.text = getString(R.string.connection_failed)
             }
+        }
+    }
+
+    internal fun launchLogin() {
+        mDialog = InstagramDialog(this, AUTHORIZATION_URL, authListener)
+        if(!mDialog!!.isShowing) {
+            mDialog?.show()
         }
     }
 

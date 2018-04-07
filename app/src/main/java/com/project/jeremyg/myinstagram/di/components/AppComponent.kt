@@ -13,6 +13,5 @@ import com.project.jeremyg.myinstagram.di.modules.FragmentModule
         ActivityModule::class,
         FragmentModule::class))
 interface AppComponent {
-
     fun inject(app: App)
 }

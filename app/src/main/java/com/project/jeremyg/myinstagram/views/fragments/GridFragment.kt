@@ -45,6 +45,7 @@ class GridFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        postsListViewModel?.init()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +59,7 @@ class GridFragment : Fragment() {
 
         prepareTransitions()
         postponeEnterTransition()
+        scrollToPosition()
 
         return recyclerView
     }
@@ -74,11 +76,9 @@ class GridFragment : Fragment() {
         postsListViewModel = ViewModelProviders.of(this.activity!!, viewModelFactory).get(PostsListViewModel::class.java)
         postsListViewModel!!.postsResponse.observe(this, Observer<List<Post>> { posts ->
             if (posts != null) {
-                Log.e(TAG, "ACCESS_TOKEN: ")
                 recyclerView.adapter.notifyDataSetChanged()
             }
         })
-        postsListViewModel?.init()
     }
 
     /**

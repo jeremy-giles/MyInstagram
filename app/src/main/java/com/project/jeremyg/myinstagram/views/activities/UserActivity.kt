@@ -24,13 +24,13 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
-        if(savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0)
-            // Return here to prevent adding additional GridFragments when changing orientation
-            return
-        }
 
         configureDagger()
+
+        if(savedInstanceState != null) {
+            currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0)
+            return
+        }
 
         val fragmentManager = supportFragmentManager
         fragmentManager
