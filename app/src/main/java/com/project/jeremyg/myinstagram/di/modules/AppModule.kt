@@ -10,7 +10,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module(includes = arrayOf(ViewModelModule::class))
+@Module(includes = arrayOf(
+        ViewModelModule::class,
+        SharedPreferencesModule::class))
 class AppModule {
 
     /** NETWORK INJECTION **/
