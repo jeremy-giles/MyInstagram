@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/part_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@+id/part_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/part_4"
+        app:layout_constraintTop_toTopOf="@+id/part_4">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/part_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/purple"
+        app:layout_constraintBottom_toBottomOf="@+id/part_3"
+        app:layout_constraintEnd_toStartOf="@+id/part_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/part_3"
+        app:layout_constraintTop_toTopOf="@+id/part_3">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/part_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/pink"
+        app:layout_constraintBottom_toBottomOf="@+id/part_2"
+        app:layout_constraintEnd_toStartOf="@+id/part_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/part_2"
+        app:layout_constraintTop_toTopOf="@+id/part_2">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/part_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/beige"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/part_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/part_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/part_1"
+        app:layout_constraintEnd_toStartOf="@+id/part_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/part_1"
+        app:layout_constraintTop_toTopOf="@+id/part_1">
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

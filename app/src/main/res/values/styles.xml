@@ -8,4 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- TEXTVIEW -->
+    <style name="AppTitle" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:fontFamily">@font/billabong</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- BUTTON -->
+    <style name="MyInstagramButton" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/transparent_bg_bordered</item>
+    </style>
+
+    <!-- CHECKBOX -->
+    <style name="MyInstagramCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:colorControlNormal">@android:color/white</item>
+        <item name="android:colorControlActivated">@android:color/white</item>
+        <item name="android:colorControlHighlight">@android:color/white</item>
+        <item name="android:buttonTint">@android:color/white</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

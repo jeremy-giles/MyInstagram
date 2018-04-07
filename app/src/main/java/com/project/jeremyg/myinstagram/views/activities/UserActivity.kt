@@ -3,6 +3,8 @@ package com.project.jeremyg.myinstagram.views.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Menu
+import android.view.MenuItem
 import com.project.jeremyg.myinstagram.R
 import com.project.jeremyg.myinstagram.views.fragments.GridFragment
 import dagger.android.AndroidInjection
@@ -24,6 +26,7 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         configureDagger()
 
@@ -42,6 +45,22 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(KEY_CURRENT_POSITION, currentPosition)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.user_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.logout -> {
+            finish()
+            true
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {

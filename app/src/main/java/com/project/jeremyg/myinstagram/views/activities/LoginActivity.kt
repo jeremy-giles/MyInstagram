@@ -19,6 +19,10 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
+import android.support.v4.content.ContextCompat
+import android.graphics.drawable.GradientDrawable
+
+
 
 
 class LoginActivity : AppCompatActivity() {

@@ -2,7 +2,16 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
+
+    <color name="beige">#FEDA75</color>
+    <color name="orange">#FA7E1E</color>
+    <color name="pink">#D62976</color>
+    <color name="purple">#962FBF</color>
+    <color name="blue">#4F5BD5</color>
+
+    <!-- TRANSPARENT -->
+    <color name="transparent">#00FFFFFF</color>
 
     <!-- CardView -->
     <color name="cardview_light_background">#fffafafa</color>

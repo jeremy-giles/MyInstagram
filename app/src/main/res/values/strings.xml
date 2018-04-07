@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">MyInstagram</string>
 
+    <!-- LOGIN -->
+    <string name="btn_login">LOGIN</string>
+    <string name="stay_connecting">Stay connecting</string>
+
     <!-- NETWORK -->
-    <string name="connection_failed">MyInstagram connection failed</string>
+    <string name="connection_failed">Connection failed</string>
 
     <!-- IMAGE -->
     <string name="image_description">Image</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">My Gallery</string>
 
 </resources>
