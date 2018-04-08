@@ -12,4 +12,10 @@
     <string name="image_description">Image</string>
     <string name="title_activity_main">My Gallery</string>
 
+    <!-- SHARED PREFERENCES -->
+    <string name="sp_stay_connecting">sp_stay_connecting</string>
+
+    <!-- FILE -->
+    <string name="user_gallery_internal_storage">user_gallery</string>
+
 </resources>

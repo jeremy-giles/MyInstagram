@@ -8,14 +8,8 @@ import dagger.Provides
 @Module
 class SharedPreferencesModule () {
 
-    private lateinit var context: Context
-
-    constructor(context: Context) : this() {
-        this.context = context
-    }
-
     @Provides
-    fun provideSharedPreferences() : SharedPreferences {
+    fun provideSharedPreferences(context: Context) : SharedPreferences {
         return context.getSharedPreferences("AppSharedPreferences", Context.MODE_PRIVATE)
     }
 }

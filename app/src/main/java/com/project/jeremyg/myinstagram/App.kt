@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import com.project.jeremyg.myinstagram.di.components.DaggerAppComponent
+import com.project.jeremyg.myinstagram.di.modules.AppModule
 import com.project.jeremyg.myinstagram.di.modules.SharedPreferencesModule
 import dagger.android.AndroidInjector
 import dagger.android.HasActivityInjector
@@ -15,7 +16,7 @@ class App : Application(), HasActivityInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-    var context: Context? = null
+    lateinit var context: Context
 
     override fun onCreate() {
         super.onCreate()
@@ -29,7 +30,7 @@ class App : Application(), HasActivityInjector {
 
     private fun initDagger() {
         DaggerAppComponent.builder()
-                .sharedPreferencesModule(SharedPreferencesModule(applicationContext))
+                .appModule(AppModule(this))
                 .build().inject(this)
     }
 

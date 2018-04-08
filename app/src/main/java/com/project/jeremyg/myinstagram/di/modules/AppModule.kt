@@ -1,5 +1,6 @@
 package com.project.jeremyg.myinstagram.di.modules
 
+import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.project.jeremyg.myinstagram.api.UserWebservice
@@ -12,8 +13,22 @@ import javax.inject.Singleton
 
 @Module(includes = arrayOf(
         ViewModelModule::class,
-        SharedPreferencesModule::class))
-class AppModule {
+        SharedPreferencesModule::class,
+        IOModule::class))
+class AppModule() {
+
+    lateinit var appContext: Context
+
+    constructor(context: Context) : this() {
+        appContext = context
+    }
+
+    /** CONTEXT **/
+
+    @Provides
+    fun provideContext() : Context {
+        return appContext
+    }
 
     /** NETWORK INJECTION **/
 

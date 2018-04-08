@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.Menu
 import android.view.MenuItem
 import com.project.jeremyg.myinstagram.R
+import com.project.jeremyg.myinstagram.managers.AppSharedPreferences
 import com.project.jeremyg.myinstagram.views.fragments.GridFragment
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
@@ -19,6 +20,9 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
     companion object {
         internal var currentPosition: Int = 0
     }
+
+    @Inject
+    lateinit var appSharedPreferences: AppSharedPreferences
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -54,6 +58,7 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.logout -> {
+            appSharedPreferences.putData(getString(R.string.sp_stay_connecting), true)
             finish()
             true
         }

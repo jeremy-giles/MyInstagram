@@ -6,13 +6,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class AppSharedPreferences @Inject constructor(var mSharedPreferences: SharedPreferences) {
+class AppSharedPreferences @Inject constructor(var mSharedPreferences: SharedPreferences) {
 
-    fun getStringData(key: String): String {
-        return mSharedPreferences.getString(key, "")
+    fun getData(key: String): Boolean {
+        return mSharedPreferences.getBoolean(key, false)
     }
 
-    fun putData(key: String, data: String) {
-        mSharedPreferences.edit().putString(key, data).apply()
+    fun putData(key: String, data: Boolean) {
+        mSharedPreferences.edit().putBoolean(key, data).apply()
     }
 }

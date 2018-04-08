@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.SplashScreen" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
     <!-- TEXTVIEW -->
     <style name="AppTitle" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:fontFamily">@font/billabong</item>

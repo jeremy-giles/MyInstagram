@@ -21,13 +21,15 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 import android.support.v4.content.ContextCompat
 import android.graphics.drawable.GradientDrawable
-
-
+import com.project.jeremyg.myinstagram.managers.AppSharedPreferences
 
 
 class LoginActivity : AppCompatActivity() {
 
     private val TAG = LoginActivity::class.java.canonicalName
+
+    @Inject
+    lateinit var appSharedPreferences: AppSharedPreferences
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     var authViewModel: InstagramAuthViewModel? = null
@@ -57,6 +59,8 @@ class LoginActivity : AppCompatActivity() {
         authViewModel = ViewModelProviders.of(this, viewModelFactory).get(InstagramAuthViewModel::class.java)
         authViewModel!!.accessToken.observe(this, Observer<AccessToken> { accessToken ->
             if (accessToken != null) {
+                appSharedPreferences.putData(getString(R.string.sp_stay_connecting),
+                        cb_stay_connecting.isChecked)
                 startActivity(Intent(this, UserActivity::class.java))
             }
         })

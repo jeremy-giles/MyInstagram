@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.project.jeremyg.myinstagram.di.modules.GlideApp
 
 
 /**
@@ -45,8 +46,9 @@ class ImageFragment : Fragment() {
         view.findViewById<ImageView>(R.id.image).setTransitionName(currentPost.id)
 
         // Load the image with Glide to prevent OOM error when the image drawables are very large.
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(currentPost.images[0].url)
+                .onlyRetrieveFromCache(true)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
                         // The postponeEnterTransition is called on the parent ImagePagerFragment, so the
