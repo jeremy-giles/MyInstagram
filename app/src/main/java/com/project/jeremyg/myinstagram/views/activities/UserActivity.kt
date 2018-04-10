@@ -1,5 +1,6 @@
 package com.project.jeremyg.myinstagram.views.activities
 
+import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -44,6 +45,7 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 .beginTransaction()
                 .add(R.id.fragment_container, GridFragment(), GridFragment::class.java.simpleName)
                 .commit()
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -58,7 +60,8 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.logout -> {
-            appSharedPreferences.putData(getString(R.string.sp_stay_connecting), true)
+            appSharedPreferences.putData(getString(R.string.sp_stay_connecting), false)
+            setResult(Activity.RESULT_OK)
             finish()
             true
         }
@@ -66,6 +69,10 @@ class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
         else -> {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBackPressed() {
+        // override for disabled back button
     }
 
     override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {

@@ -1,5 +1,6 @@
 package com.project.jeremyg.myinstagram.views.activities
 
+import android.animation.Animator
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -21,6 +22,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 import android.support.v4.content.ContextCompat
 import android.graphics.drawable.GradientDrawable
+import android.transition.Fade
+import android.util.Log
+import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import com.project.jeremyg.myinstagram.managers.AppSharedPreferences
 
 
@@ -53,6 +59,33 @@ class LoginActivity : AppCompatActivity() {
         btn_login.setOnClickListener {
             launchLogin()
         }
+
+        cb_stay_connecting.isChecked =
+                appSharedPreferences.getData(getString(R.string.sp_stay_connecting))
+
+        animate_container.animate()
+                .setDuration(1000L)
+                .alpha(1F)
+                .setListener(object : Animator.AnimatorListener {
+                    override fun onAnimationRepeat(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+
+                    }
+
+                    override fun onAnimationStart(p0: Animator?) {
+                        animate_container.alpha = 0F
+                        animate_container.visibility = View.VISIBLE
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        animate_container.visibility = View.VISIBLE
+                    }
+
+                }).start()
+
     }
 
     private fun configureViewModel() {

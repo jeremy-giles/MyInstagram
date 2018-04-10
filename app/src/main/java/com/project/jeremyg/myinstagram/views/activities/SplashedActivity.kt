@@ -1,5 +1,6 @@
 package com.project.jeremyg.myinstagram.views.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,9 @@ import javax.inject.Inject
 
 class SplashedActivity : AppCompatActivity() {
 
+    private val ACTIVITY_LOGIN = 1000
+    private val LOGOUT = 1001
+
     @Inject
     lateinit var appSharedPreferences: AppSharedPreferences
 
@@ -19,9 +23,19 @@ class SplashedActivity : AppCompatActivity() {
         setContentView(R.layout.my_instagram_background)
 
         if(appSharedPreferences.getData(getString(R.string.sp_stay_connecting))) {
-            startActivity(Intent(this, UserActivity::class.java))
+            startActivityForResult(
+                    Intent(this, UserActivity::class.java), LOGOUT)
         } else {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivityForResult(
+                    Intent(this, LoginActivity::class.java), ACTIVITY_LOGIN)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            ACTIVITY_LOGIN -> finish()
+            LOGOUT -> recreate()
         }
     }
 }
