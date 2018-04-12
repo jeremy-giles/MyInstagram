@@ -20,7 +20,7 @@ class SplashedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.my_instagram_background)
+        setContentView(R.layout.activity_splashed)
 
         if(appSharedPreferences.getData(getString(R.string.sp_stay_connecting))) {
             startActivityForResult(

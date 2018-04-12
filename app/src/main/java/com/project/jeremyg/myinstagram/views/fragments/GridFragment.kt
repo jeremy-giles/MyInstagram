@@ -3,7 +3,6 @@ package com.project.jeremyg.myinstagram.views.fragments
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -15,11 +14,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View.OnLayoutChangeListener
 import android.support.v4.app.SharedElementCallback
 import android.transition.TransitionInflater
-import android.util.Log
-import com.project.jeremyg.myinstagram.models.AccessToken
 import com.project.jeremyg.myinstagram.models.Post
 import com.project.jeremyg.myinstagram.view_models.PostsListViewModel
-import com.project.jeremyg.myinstagram.views.activities.LoginActivity
 import com.project.jeremyg.myinstagram.views.activities.UserActivity
 import com.project.jeremyg.myinstagram.views.adapters.GridAdapter
 import dagger.android.support.AndroidSupportInjection

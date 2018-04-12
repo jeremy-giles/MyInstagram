@@ -4,6 +4,7 @@ import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.project.jeremyg.myinstagram.R
@@ -15,6 +16,8 @@ import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class UserActivity : AppCompatActivity(), HasSupportFragmentInjector {
+
+    private val TAG = UserActivity::class.java.canonicalName
 
     private val KEY_CURRENT_POSITION = "com.project.jeremyg.myinstagram.key.currentPosition"
 
